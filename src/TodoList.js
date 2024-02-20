@@ -17,10 +17,11 @@ function TodoList() {
     ]);
 
     const [text, setText] = useState('');
-    function addTask(text) {
+    function addTask(inValue) {
+        console.log("inValue", inValue)
         const newTask = {
             id: Date.now(),
-            text,
+            text: inValue,
             completed: false
         };
         setTasks([...tasks, newTask]);
@@ -30,21 +31,22 @@ function TodoList() {
         setTasks(tasks.filter(task => task.id !== id));
     }
     function toggleCompleted(id) {
+        
         setTasks(tasks.map(task => {
             if (task.id === id) {
-                return {...task, completed: !task.completed };
+                return { ...task, completed: !task.completed };
             } else {
                 return task;
             }
         }));
     }
 
-
+    console.log("completed", tasks)
 
     return (
         <div className="todo-list">
-            <TodoFrom addTask={addTask} setTexta={text}/>
-            
+            <TodoFrom addTask={addTask} setInput={text} />
+
             {tasks.map(task => (
                 <TodoItem
                     key={task.id}
@@ -58,7 +60,7 @@ function TodoList() {
                 onChange={e => setText(e.target.value)}
             />
             <button onClick={() => addTask(text)}>Add</button> */}
-            
+
         </div>
     );
 }

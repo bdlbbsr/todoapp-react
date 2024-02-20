@@ -3,7 +3,7 @@ function TodoItem({ task, deleteTask, toggleCompleted }) {
     function handleChange() {
         toggleCompleted(task.id);
     }
-
+console.log("toggleCompleted", task.completed )
     return (
         <div className="todo-item">
             <input
@@ -11,7 +11,7 @@ function TodoItem({ task, deleteTask, toggleCompleted }) {
                 checked={task.completed}
                 onChange={handleChange}
             />
-            <p>{task.text}</p>
+            <p className={task.completed ? 'done' : '' }>{task.text}</p>
             <button onClick={() => deleteTask(task.id)} className='deleteBtn'>
                 X
             </button>
